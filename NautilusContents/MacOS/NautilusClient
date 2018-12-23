@@ -1,0 +1,55 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------------------
+#
+# PURPOSE
+# -------
+# Compile java code for the Nautilus Keyboard Client and run the Client Application
+#
+# AUTHOR
+# ------
+# Ayre Labs (2018)
+#
+#------------------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------------------
+# DEFINITIONS
+#------------------------------------------------------------------------------------------
+readonly JAVA_WEBSOCKET_LIBRARY=/Applications/NautilusClient.app/Contents/MacOS/libs/Java-WebSocket-1.3.9.jar
+readonly SERVER_WEBSOCKET_ADDRESS="ws://45.77.234.39:8887"
+
+#------------------------------------------------------------------------------------------
+# MAIN
+#------------------------------------------------------------------------------------------
+main()
+{
+    echo "\nCompiling..."
+    compileNautilusKeyboardClient
+    echo "Done.\n"
+    
+    echo "\nRunning..."
+    runNautilusKeyboardClient
+    echo "Done.\n"
+}
+
+#------------------------------------------------------------------------------------------
+# INTERNAL FUNCTIONS
+#------------------------------------------------------------------------------------------
+function compileNautilusKeyboardClient()
+{
+    cd /Applications/NautilusClient.app/Contents/MacOS/src
+    javac -cp $JAVA_WEBSOCKET_LIBRARY *.java
+    cp ./*.class /Applications/NautilusClient.app/Contents/MacOS/bin/
+    rm ./*.class
+}
+
+function runNautilusKeyboardClient()
+{
+    cd /Applications/NautilusClient.app/Contents/MacOS/bin
+    java -cp $JAVA_WEBSOCKET_LIBRARY:. NautilusClientApplication $SERVER_WEBSOCKET_ADDRESS
+}
+
+#------------------------------------------------------------------------------------------
+# SCRIPT
+#------------------------------------------------------------------------------------------
+    main
