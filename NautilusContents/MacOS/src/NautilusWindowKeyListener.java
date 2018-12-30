@@ -35,6 +35,7 @@ public class NautilusWindowKeyListener implements KeyListener {
 
 	@Override
     public void keyPressed(KeyEvent keyEvent) {
+        System.out.printf("Key: %d\n", keyEvent.getKeyCode());
         if (isFunctionKeyEvent(keyEvent)) {
             this.sendFunctionKeyPressEventToServerKeyProvider(keyEvent);
         }
@@ -48,7 +49,8 @@ public class NautilusWindowKeyListener implements KeyListener {
     private boolean isFunctionKeyEvent(KeyEvent keyEvent) {
         return (keyEvent.getKeyCode() >= KeyEvent.VK_F1 && keyEvent.getKeyCode() <= KeyEvent.VK_F12) 
         || keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE || keyEvent.getKeyCode() == KeyEvent.VK_LEFT
-        || keyEvent.getKeyCode() == KeyEvent.VK_RIGHT;
+        || keyEvent.getKeyCode() == KeyEvent.VK_RIGHT || keyEvent.getKeyCode() == KeyEvent.VK_UP
+        || keyEvent.getKeyCode() == KeyEvent.VK_DOWN;
     }
 
     private void sendFunctionKeyPressEventToServerKeyProvider(KeyEvent keyEvent) {

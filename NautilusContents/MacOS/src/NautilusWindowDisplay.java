@@ -27,6 +27,7 @@ public class NautilusWindowDisplay extends JPanel {
     private NautilusWindowDisplay() {
     	this.setPanelParameters();
     	this.displayPanelOnFrame();
+        this.setFocusTraversalKeysEnabled(false);
     }
 
     public static NautilusWindowDisplay createNautilusWindowDisplay() {

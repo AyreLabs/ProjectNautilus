@@ -38,7 +38,7 @@ public class NautilusServerKeyProvider {
 	public String retrieveKeyEventsStringToSendToServer() {
 		ArrayList<KeyEvent> keyEventsAsList = this.addKeyEventsToSendList();
 		String keyEventsAsString = NautilusKeyboardProtocol.keyPressesEventMessageStringWithListOfKeyEvents(keyEventsAsList);
-        System.out.printf("asd: %s\n", keyEventsAsString);
+        //System.out.printf("asd: %s\n", keyEventsAsString);
         return keyEventsAsString;
 	}
 
